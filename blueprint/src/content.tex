@@ -23,7 +23,8 @@ Here you can use LaTex. \cite{marcus}. You must cite something to make it work.
     \leanok
     \lean{two_different_elements}
     Here is a documentation.
-\end
+\end{lemma}
+
 \begin{proof}
     Here is a proof.
 \end{proof}
@@ -31,205 +32,411 @@ Here you can use LaTex. \cite{marcus}. You must cite something to make it work.
 \begin{definition}\label{Auction}
     \leanok
     \lean{Auction}
-    \uses{two_different_elements, }
+    \uses{two_different_elements}
     Here is a definition.
 \end{definition}
 
-\begin{definition}\label{maxb}
-    \leanok
-    \lean{maxb}
-    Here is a definition.
-\end{definition}
+% \begin{definition}\label{maxb}
+%     \leanok
+%     \lean{maxb}
+%     Here is a definition.
+% \end{definition}
 
-\begin{lemma}\label{exists_max}
-    \leanok
-    \lean{exists_max}
-    Here is a definition.
-\end{lemma}
-\begin{proof}
-    Here is a proof.
-\end{proof}
-
-
-\begin{definition}\label{winner}
-    \leanok
-    \lean{winner}
-    \uses{exists_max }
-    Here is a definition.
-\end{definition}
-
-\begin{lemma}\label{winner_take_max}
-    \leanok
-    \lean{winner_take_max}
-    \uses{maxb, exists_max, winner}
-    Here is a definition.
-\end{lemma}
-\begin{proof}
-    Here is a proof.
-\end{proof}
-
-\begin{lemma}\label{delete_i_nonempty}
-    \leanok
-    \lean{delete_i_nonempty}
-    Here is a definition.
-\end{lemma}
-\begin{proof}
-    Here is a proof.
-\end{proof}
-
-\begin{definition}\label{B}
-    \leanok
-    \lean{B}
-    \uses{delete_i_nonempty}
-    Here is a definition.
-\end{definition}
-
-\begin{definition}\label{secondprice}
-    \leanok
-    \lean{secondprice}
-    \uses{winner, B}
-    Here is a definition.
-\end{definition}
-
-\begin{definition}\label{utility}
-    \leanok
-    \lean{utility}
-    \uses{winner, secondprice}
-    Here is a definition.
-\end{definition}
-
-\begin{lemma}\label{utility_winner}
-    \leanok
-    \lean{utility_winner}
-    \uses{utility, secondprice}
-    Here is a definition.
-\end{lemma}
-\begin{proof}
-    Here is a proof.
-\end{proof}
-
-\begin{lemma}\label{utility_loser}
-    \leanok
-    \lean{utility_loser}
-    \uses{utility, winner}
-    Here is a definition.
-\end{lemma}
-\begin{proof}
-    Here is a proof.
-\end{proof}
-
-\begin{definition}\label{dominant}
-    \leanok
-    \lean{dominant}
-    \uses{utility}
-    Here is a definition.
-\end{definition}
+% \begin{lemma}\label{exists_max}
+%     \leanok
+%     \lean{exists_max}
+%     Here is a definition.
+% \end{lemma}
+% \begin{proof}
+%     Here is a proof.
+% \end{proof}
 
 
-\begin{lemma}\label{gt_wins}
-    \leanok
-    \lean{gt_wins}
-    \uses{winner, maxb, winner_take_max}
-    Here is a definition.
-\end{lemma}
-\begin{proof}
-    Here is a proof.
-\end{proof}
+% \begin{definition}\label{winner}
+%     \leanok
+%     \lean{winner}
+%     \uses{exists_max }
+%     Here is a definition.
+% \end{definition}
+
+% \begin{lemma}\label{winner_take_max}
+%     \leanok
+%     \lean{winner_take_max}
+%     \uses{maxb, exists_max, winner}
+%     Here is a definition.
+% \end{lemma}
+% \begin{proof}
+%     Here is a proof.
+% \end{proof}
+
+% \begin{lemma}\label{delete_i_nonempty}
+%     \leanok
+%     \lean{delete_i_nonempty}
+%     Here is a definition.
+% \end{lemma}
+% \begin{proof}
+%     Here is a proof.
+% \end{proof}
+
+% \begin{definition}\label{B}
+%     \leanok
+%     \lean{B}
+%     \uses{delete_i_nonempty}
+%     Here is a definition.
+% \end{definition}
+
+% \begin{definition}\label{secondprice}
+%     \leanok
+%     \lean{secondprice}
+%     \uses{winner, B}
+%     Here is a definition.
+% \end{definition}
+
+% \begin{definition}\label{utility}
+%     \leanok
+%     \lean{utility}
+%     \uses{winner, secondprice}
+%     Here is a definition.
+% \end{definition}
+
+% \begin{lemma}\label{utility_winner}
+%     \leanok
+%     \lean{utility_winner}
+%     \uses{utility, secondprice}
+%     Here is a definition.
+% \end{lemma}
+% \begin{proof}
+%     Here is a proof.
+% \end{proof}
+
+% \begin{lemma}\label{utility_loser}
+%     \leanok
+%     \lean{utility_loser}
+%     \uses{utility, winner}
+%     Here is a definition.
+% \end{lemma}
+% \begin{proof}
+%     Here is a proof.
+% \end{proof}
+
+% \begin{definition}\label{dominant}
+%     \leanok
+%     \lean{dominant}
+%     \uses{utility}
+%     Here is a definition.
+% \end{definition}
+
+
+% \begin{lemma}\label{gt_wins}
+%     \leanok
+%     \lean{gt_wins}
+%     \uses{winner, maxb, winner_take_max}
+%     Here is a definition.
+% \end{lemma}
+% \begin{proof}
+%     Here is a proof.
+% \end{proof}
 
 
 
-\begin{lemma}\label{b_winner_max}
-    \leanok
-    \lean{b_winner_max}
-    \uses{winner, maxb, winner_take_max}
-    Here is a definition.
-\end{lemma}
-\begin{proof}
-    Here is a proof.
-\end{proof}
+% \begin{lemma}\label{b_winner_max}
+%     \leanok
+%     \lean{b_winner_max}
+%     \uses{winner, maxb, winner_take_max}
+%     Here is a definition.
+% \end{lemma}
+% \begin{proof}
+%     Here is a proof.
+% \end{proof}
 
-\begin{lemma}\label{b_winner}
-    \leanok
-    \lean{b_winner}
-    \uses{winner, secondprice ,winner_take_max,  delete_i_nonempty}
-    Here is a definition.
-\end{lemma}
-\begin{proof}
-    Here is a proof.
-\end{proof}
+% \begin{lemma}\label{b_winner}
+%     \leanok
+%     \lean{b_winner}
+%     \uses{winner, secondprice ,winner_take_max,  delete_i_nonempty}
+%     Here is a definition.
+% \end{lemma}
+% \begin{proof}
+%     Here is a proof.
+% \end{proof}
 
-\begin{lemma}\label{b_loser_max}
-    \leanok
-    \lean{b_loser_max}
-    \uses{winner, maxb ,winner_take_max}
-    Here is a definition.
-\end{lemma}
-\begin{proof}
-    Here is a proof.
-\end{proof}
+% \begin{lemma}\label{b_loser_max}
+%     \leanok
+%     \lean{b_loser_max}
+%     \uses{winner, maxb ,winner_take_max}
+%     Here is a definition.
+% \end{lemma}
+% \begin{proof}
+%     Here is a proof.
+% \end{proof}
 
-\begin{lemma}\label{utility_nneg}
-    \leanok
-    \lean{utility_nneg}
-    \uses{utility, winner, secondprice ,winner_take_max, maxb}
-    Here is a definition.
-\end{lemma}
-\begin{proof}
-    Here is a proof.
-\end{proof}
+% \begin{lemma}\label{utility_nneg}
+%     \leanok
+%     \lean{utility_nneg}
+%     \uses{utility, winner, secondprice ,winner_take_max, maxb}
+%     Here is a definition.
+% \end{lemma}
+% \begin{proof}
+%     Here is a proof.
+% \end{proof}
 
-\begin{lemma}\label{valuation_is_dominant}
-    \leanok
-    \lean{valuation_is_dominant}
-    \uses{dominant, winner, gt_wins, utility_winner, secondprice , 
-          delete_i_nonempty, utility_nneg}
-    Here is a definition.
-\end{lemma}
-\begin{proof}
-    Here is a proof.
-\end{proof}
+% \begin{lemma}\label{valuation_is_dominant}
+%     \leanok
+%     \lean{valuation_is_dominant}
+%     \uses{dominant, winner, gt_wins, utility_winner, secondprice , 
+%           delete_i_nonempty, utility_nneg}
+%     Here is a definition.
+% \end{lemma}
+% \begin{proof}
+%     Here is a proof.
+% \end{proof}
 
-\begin{definition}\label{Utility.FirstPrice}
-    \leanok
-    \lean{Utility.FirstPrice}
-    \uses{winner}
-    Here is a definition.
-\end{definition}
+% \begin{definition}\label{Utility.FirstPrice}
+%     \leanok
+%     \lean{Utility.FirstPrice}
+%     \uses{winner}
+%     Here is a definition.
+% \end{definition}
 
-\begin{lemma}\label{utility_first_price_winner}
-    \leanok
-    \lean{utility_first_price_winner}
-    \uses{winner, Utility.FirstPrice}
-    Here is a definition.
-\end{lemma}
-\begin{proof}
-    Here is a proof.
-\end{proof}
+% \begin{lemma}\label{utility_first_price_winner}
+%     \leanok
+%     \lean{utility_first_price_winner}
+%     \uses{winner, Utility.FirstPrice}
+%     Here is a definition.
+% \end{lemma}
+% \begin{proof}
+%     Here is a proof.
+% \end{proof}
 
-\begin{lemma}\label{utility_first_price_loser}
-    \leanok
-    \lean{utility_first_price_winner}
-    \uses{winner, Utility.FirstPrice}
-    Here is a definition.
-\end{lemma}
-\begin{proof}
-    Here is a proof.
-\end{proof}
+% \begin{lemma}\label{utility_first_price_loser}
+%     \leanok
+%     \lean{utility_first_price_winner}
+%     \uses{winner, Utility.FirstPrice}
+%     Here is a definition.
+% \end{lemma}
+% \begin{proof}
+%     Here is a proof.
+% \end{proof}
 
-\begin{definition}\label{Dominant.FirstPrice}
-    \leanok
-    \lean{Dominant.FirstPrice}
-    \uses{Utility.FirstPrice}
-    Here is a definition.
-\end{definition}
+% \begin{definition}\label{Dominant.FirstPrice}
+%     \leanok
+%     \lean{Dominant.FirstPrice}
+%     \uses{Utility.FirstPrice}
+%     Here is a definition.
+% \end{definition}
 
-\begin{theorem}\label{first_price_has_no_dominant_strategy}
-    \leanok
-    \lean{first_price_has_no_dominant_strategy}
-    \uses{Dominant.FirstPrice, winner, gt_wins}
-    Here is a definition.
-\end{lemma}
-\begin{proof}
-    Here is a proof.
-\end{proof}
+% \begin{theorem}\label{first_price_has_no_dominant_strategy}
+%     \leanok
+%     \lean{first_price_has_no_dominant_strategy}
+%     \uses{Dominant.FirstPrice, winner, gt_wins}
+%     Here is a definition.
+% \end{lemma}
+% \begin{proof}
+%     Here is a proof.
+% \end{proof}
+
+
+
+
+
+
+
+% \begin{definition}\label{SingleParameterEnvironment}
+%     \leanok
+%     \lean{SingleParameterEnvironment}
+%     Here is a definition.
+% \end{definition}
+
+% \begin{definition}\label{Nonempty E.I}
+%     \leanok
+%     \lean{Nonempty E.I}
+%     Here is a definition.
+% \end{definition}
+
+% \begin{definition}\label{Fintype E.I }
+%     \leanok
+%     \lean{Dominant.FirstPrice}
+%     Here is a definition.
+% \end{definition}
+
+% \begin{definition}\label{Nonempty (E.feasibleSet) }
+%     \leanok
+%     \lean{Dominant.FirstPrice}
+%     Here is a definition.
+% \end{definition}
+
+% \begin{definition}\label{CoeFun E.feasibleSet}
+%     \leanok
+%     \lean{CoeFun E.feasibleSet}
+%     Here is a definition.
+% \end{definition}
+
+
+% \begin{definition}\label{DirectRevelationMechanism}
+%     \leanok
+%     \lean{Dominant.FirstPrice}
+%     \uses{Utility.FirstPrice}
+%     Here is a definition.
+% \end{definition}
+
+
+% \begin{definition}\label{utility}
+%     \leanok
+%     \lean{utility}
+%     Here is a definition.
+% \end{definition}
+
+% \begin{definition}\label{dominant}
+%     \leanok
+%     \lean{utility}
+%     \uses{utility}
+%     Here is a definition.
+% \end{definition}
+
+% \begin{definition}\label{dsic}
+%     \leanok
+%     \lean{dsic}
+%     \uses{dominant}
+%     Here is a definition.
+% \end{definition}
+
+
+% \begin{definition}\label{nondecreasingy}
+%     \leanok
+%     \lean{nondecreasing}
+%     Here is a definition.
+% \end{definition}
+
+
+% \begin{definition}\label{with_hole}
+%     \leanok
+%     \lean{with_hole}
+%     Here is a definition.
+% \end{definition}
+
+% \begin{lemma}\label{filled_hole_retrieve}
+%     \leanok
+%     \lean{filled_hole_retrieve}
+%     \uses{with_hole}
+%     Here is a definition.
+% \end{lemma}
+% \begin{proof}
+%     Here is a proof.
+% \end{proof}
+
+
+% \begin{lemma}\label{filled_hole_retrieve_other}
+%     \leanok
+%     \lean{utility_nneg}
+%     \uses{with_hole}
+%     Here is a definition.
+% \end{lemma}
+% \begin{proof}
+%     Here is a proof.
+% \end{proof}
+
+
+% \begin{lemma}\label{filled_hole_almost_equal}
+%     \leanok
+%     \lean{filled_hole_almost_equal}
+%     \uses{with_hole, filled_hole_retrieve_other}
+%     Here is a definition.
+% \end{lemma}
+% \begin{proof}
+%     Here is a proof.
+% \end{proof}
+
+
+% \begin{lemma}\label{almost_equal_fill_hole}
+%     \leanok
+%     \lean{almost_equal_fill_hole}
+%     \uses{with_hole}
+%     Here is a definition.
+% \end{lemma}
+% \begin{proof}
+%     Here is a proof.
+% \end{proof}
+
+% \begin{lemma}\label{filled_hole_replace}
+%     \leanok
+%     \lean{filled_hole_replace}
+%     \uses{with_hole}
+%     Here is a definition.
+% \end{lemma}
+% \begin{proof}
+%     Here is a proof.
+% \end{proof}
+
+% \begin{lemma}\label{unfill_fill_hole}
+%     \leanok
+%     \lean{unfill_fill_hole}
+%     \uses{with_hole}
+%     Here is a definition.
+% \end{lemma}
+% \begin{proof}
+%     Here is a proof.
+% \end{proof}
+
+% \begin{definition}\label{monotone}
+%     \leanok
+%     \lean{monotone}
+%     Here is a definition.
+% \end{definition}
+
+% \begin{definition}\label{implementable}
+%     \leanok
+%     \lean{implementable}
+%     Here is a definition.
+% \end{definition}
+
+% \begin{theorem}\label{payment_sandwich}
+%     \leanok
+%     \lean{payment_sandwich}
+%     \uses{with_hole, filled_hole_almost_equal, utility}
+%     Here is a definition.
+% \end{lemma}
+% \begin{proof}
+%     Here is a proof.
+% \end{proof}
+
+% \begin{theorem}\label{implementable_impl_monotone}
+%     \leanok
+%     \lean{implementable_impl_monotone}
+%     \uses{implementable, monotone, payment_sandwich, 
+%     nonpos_of_mul_nonpos_righ, with_hole}
+%     Here is a definition.
+% \end{lemma}
+% \begin{proof}
+%     Here is a proof.
+% \end{proof}
+
+
+% \begin{definition}\label{magic_payment_rule}
+%     \leanok
+%     \lean{magic_payment_rule}
+%     \uses{with_hole}
+%     Here is a definition.
+% \end{definition}
+
+
+% \begin{definition}\label{with_magic}
+%     \leanok
+%     \lean{with_hole}
+%     \uses{magic_payment_rule}
+%     Here is a definition.
+% \end{definition}
+
+% \begin{definition}\label{utility_exp}
+%     \leanok
+%     \lean{utility_exp}
+%     \uses{utility, with_magic, with_hole}
+%     Here is a definition.
+% \end{definition}
+
+
+
+
+
+
+
+
 
