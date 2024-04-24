@@ -6,7 +6,7 @@ Author: Wang Haocheng.
 
 import Mathlib.Data.Real.EReal
 import Mathlib.Data.Fintype.Basic
-import Mathlib.Data.Fintype.Latticegit push
+import Mathlib.Data.Fintype.Lattice
 
 /-!
 # Auction Theory
