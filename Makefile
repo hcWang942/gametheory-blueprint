@@ -1,6 +1,6 @@
 .DEFAULT_GOAL := all
 
-PROJECT = DemoProject
+PROJECT = GameTheory
 
 .PHONY: all build blueprint analyze serve
 
