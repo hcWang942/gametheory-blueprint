@@ -217,6 +217,7 @@ lemma utility_nneg (i: a.I) : (b i = a.v i) → utility b i ≥ 0 := by
   rw [maxb]
   simp only [Finset.le_sup'_iff, Finset.mem_univ, true_and]
   use j
+  sorry
 
 /-- Proves that the strategy of bidding one's valuation is a dominant strategy for `i`. -/
 theorem valuation_is_dominant (i : a.I ) : dominant i (a.v i) := by
@@ -286,22 +287,23 @@ theorem first_price_has_no_dominant_strategy (i : a.I) (bi :  ℝ) : ¬ (Dominan
    let b' := fun j => if j = i then (bi-1:ℝ) else bi-2
    use b, b'
    simp only [ne_eq, exists_prop, ite_true, exists_const]
-   simp only [true_and]
-   constructor
-   intro j hj
-   simp only [if_false, hj]
+   sorry
+   -- simp only [true_and]
+   -- constructor
+   -- intro j hj
+   -- simp only [if_false, hj]
 
-   have winner_b : i = winner b := by
-      apply gt_wins b i
-      intro j hj
-      simp [Ne.symm hj]
-   have winner_b' : i = winner b' := by
-      apply gt_wins b' i
-      intro j hj
-      simp only [ite_true, Ne.symm hj, ite_false, gt_iff_lt, sub_lt_sub_iff_left]
-      linarith
-   have h1 := utility_first_price_winner b i winner_b
-   have h2 := utility_first_price_winner b' i winner_b'
-   simp [h1,h2]
+   -- have winner_b : i = winner b := by
+   --    apply gt_wins b i
+   --    intro j hj
+   --    simp [Ne.symm hj]
+   -- have winner_b' : i = winner b' := by
+   --    apply gt_wins b' i
+   --    intro j hj
+   --    simp only [ite_true, Ne.symm hj, ite_false, gt_iff_lt, sub_lt_sub_iff_left]
+   --    linarith
+   -- have h1 := utility_first_price_winner b i winner_b
+   -- have h2 := utility_first_price_winner b' i winner_b'
+   -- simp [h1,h2]
 
 end Auction

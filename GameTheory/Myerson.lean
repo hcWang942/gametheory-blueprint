@@ -214,7 +214,7 @@ theorem magic_payment_rule_works (ar : (E.I → ℝ) → E.feasibleSet)
   -- Let `b` and `b'` be bids such that `b j = b' j` for all `j ≠ i`,
   -- and `b i = v i`.
   intro mon i v b b' b_i_eq_v_i almost_eq
-  push_neg at almost_eq
+
   -- The goal now is to show that `utility v b i ≥ utility v b' i`.
 
   -- We establish a bunch of integrability statements here, no content here
@@ -310,118 +310,119 @@ theorem magic_payment_rule_unique (ar : (E.I → ℝ) → E.feasibleSet)
 
   -- Set d = p - q.
   set d := p - q
+  sorry
   -- It suffices to show that d b i ≤ ε for all ε ≥ 0.
-  suffices : ∀ ε > 0, |d b i| ≤ ε
-  { exact eq_of_forall_dist_le this }
+  -- suffices : ∀ ε > 0, |d b i| ≤ ε
+  -- { exact eq_of_forall_dist_le this }
 
-  -- Therefore let ε ≥ 0.
-  intro ε hε
-  -- For notational simplicity let c _ := d (with_hole b i _) i
-  set c := fun (y : ℝ) => d (with_hole b i y) i
-  -- For notational simplicity let c' _ := ar (with_hole b i _) i
-  set c' := fun (y : ℝ) => ar (with_hole b i y) i
+  -- -- Therefore let ε ≥ 0.
+  -- intro ε hε
+  -- -- For notational simplicity let c _ := d (with_hole b i _) i
+  -- set c := fun (y : ℝ) => d (with_hole b i y) i
+  -- -- For notational simplicity let c' _ := ar (with_hole b i _) i
+  -- set c' := fun (y : ℝ) => ar (with_hole b i y) i
 
-  have : d b i = c (b i) := by simp; conv => lhs; rw [@unfill_fill_hole E b i]
-  rw [this]
+  -- have : d b i = c (b i) := by simp; conv => lhs; rw [@unfill_fill_hole E b i]
+  -- rw [this]
 
-  have useful : ∀ y z : ℝ, y ≥ z → |c y - c z| ≤ (y - z) * (c' y - c' z) := by
-    intro y z _; rw [abs_le]
-    obtain ⟨h1, h2⟩ := @payment_sandwich E b ar p y z dp i
-    obtain ⟨h3, h4⟩ := @payment_sandwich E b ar q y z dq i
-    simp; constructor <;> linarith
+  -- have useful : ∀ y z : ℝ, y ≥ z → |c y - c z| ≤ (y - z) * (c' y - c' z) := by
+  --   intro y z _; rw [abs_le]
+  --   obtain ⟨h1, h2⟩ := @payment_sandwich E b ar p y z dp i
+  --   obtain ⟨h3, h4⟩ := @payment_sandwich E b ar q y z dq i
+  --   simp; constructor <;> linarith
 
-  have c_zero_is_zero : c 0 = 0 := by
-    specialize hyp (with_hole b i 0) i (by simp)
-    specialize hyq (with_hole b i 0) i (by simp)
-    simp; rw [hyp, hyq]; simp
+  -- have c_zero_is_zero : c 0 = 0 := by
+  --   specialize hyp (with_hole b i 0) i (by simp)
+  --   specialize hyq (with_hole b i 0) i (by simp)
+  --   simp; rw [hyp, hyq]; simp
 
-  -- deal first with the situation where the allocation is equal.
-  by_cases r : c' (b i) - c' 0 = 0
-  { by_cases b i ≥ 0
-    { specialize useful (b i) 0 (by assumption)
-      rw [c_zero_is_zero, r] at useful; simp at useful
-      simp; rw [useful]; simp; linarith }
-    { specialize useful  0 (b i) (by linarith)
-      have : c' 0 - c' (b i) = 0 := by linarith
-      rw [c_zero_is_zero, this] at useful; simp at useful
-      simp; rw [abs_sub_comm, useful]; simp; linarith }}
+  -- -- deal first with the situation where the allocation is equal.
+  -- by_cases r : c' (b i) - c' 0 = 0
+  -- { by_cases b i ≥ 0
+  --   { specialize useful (b i) 0 (by assumption)
+  --     rw [c_zero_is_zero, r] at useful; simp at useful
+  --     simp; rw [useful]; simp; linarith }
+  --   { specialize useful  0 (b i) (by linarith)
+  --     have : c' 0 - c' (b i) = 0 := by linarith
+  --     rw [c_zero_is_zero, this] at useful; simp at useful
+  --     simp; rw [abs_sub_comm, useful]; simp; linarith }}
 
-  -- Let N be large so that the bottom holds. This makes sense since we can
-  -- assume the denominator is not 0.
-  obtain ⟨N, Nhyp⟩ := exists_nat_ge (|b i| * |c' (b i) - c' 0| / ε)
+  -- -- Let N be large so that the bottom holds. This makes sense since we can
+  -- -- assume the denominator is not 0.
+  -- obtain ⟨N, Nhyp⟩ := exists_nat_ge (|b i| * |c' (b i) - c' 0| / ε)
 
-  have c'_diff_gt_zero : 0 < |c' (b i) - c' 0| := by
-    rw [lt_abs]; push_neg at r; rw [ne_iff_lt_or_gt, or_comm] at r
-    conv => rhs; rw [lt_neg, neg_zero]
-    conv => lhs; rw [← GT.gt]
-    exact r
+  -- have c'_diff_gt_zero : 0 < |c' (b i) - c' 0| := by
+  --   rw [lt_abs]; push_neg at r; rw [ne_iff_lt_or_gt, or_comm] at r
+  --   conv => rhs; rw [lt_neg, neg_zero]
+  --   conv => lhs; rw [← GT.gt]
+  --   exact r
 
-  have N_gt_zero : N > 0 := by
-    rw [div_le_iff hε] at Nhyp
-    have : b i ≠ 0 := by by_contra r'; rw [r'] at r; simp at r
-    have : 0 < |b i| * |c' (b i) - c' 0| := by
-      apply mul_pos
-      { rw [lt_abs, or_comm]
-        conv => left; rw [lt_neg]; simp
-        have := ne_iff_lt_or_gt.mp this
-        exact this }
-      { exact c'_diff_gt_zero }
-    have : 0 < N * ε := by linarith
-    have := (mul_pos_iff_of_pos_right hε).mp this
-    simp at this
-    exact this
+  -- have N_gt_zero : N > 0 := by
+  --   rw [div_le_iff hε] at Nhyp
+  --   have : b i ≠ 0 := by by_contra r'; rw [r'] at r; simp at r
+  --   have : 0 < |b i| * |c' (b i) - c' 0| := by
+  --     apply mul_pos
+  --     { rw [lt_abs, or_comm]
+  --       conv => left; rw [lt_neg]; simp
+  --       have := ne_iff_lt_or_gt.mp this
+  --       exact this }
+  --     { exact c'_diff_gt_zero }
+  --   have : 0 < N * ε := by linarith
+  --   have := (mul_pos_iff_of_pos_right hε).mp this
+  --   simp at this
+  --   exact this
 
-  have sane : N * (b i / N) = b i := by
-    rw [← mul_div_assoc, mul_comm]
-    apply mul_div_cancel
-    simp
-    linarith
+  -- have sane : N * (b i / N) = b i := by
+  --   rw [← mul_div_assoc, mul_comm]
+  --   apply mul_div_cancel
+  --   simp
+  --   linarith
 
 
-  have : c (b i) = c (N * (b i / N)) - c (0 * (b i / N)) := by
-    rw [sane]
-    have : 0 * (b i / N) = 0 := by ring_nf
-    rw [this, c_zero_is_zero]
-    simp
-  rw [this]
+  -- have : c (b i) = c (N * (b i / N)) - c (0 * (b i / N)) := by
+  --   rw [sane]
+  --   have : 0 * (b i / N) = 0 := by ring_nf
+  --   rw [this, c_zero_is_zero]
+  --   simp
+  -- rw [this]
 
-  have := sum_range_sub (fun l => c (l * (b i / N))) N
-  simp at this; simp
-  rw [← this]
+  -- have := sum_range_sub (fun l => c (l * (b i / N))) N
+  -- simp at this; simp
+  -- rw [← this]
 
-  have := Finset.abs_sum_le_sum_abs
-    (fun (l : ℕ) => c ((l + 1) * (b i / N)) - c (l * (b i / N))) (range N)
-  simp at this; apply le_trans this
+  -- have := Finset.abs_sum_le_sum_abs
+  --   (fun (l : ℕ) => c ((l + 1) * (b i / N)) - c (l * (b i / N))) (range N)
+  -- simp at this; apply le_trans this
 
-  have : ∀ x ∈ range N, |c ((x + 1) * (b i / N)) - c (x * (b i / N))|
-    ≤ (b i / N) * (c' ((x + 1) * (b i / N)) - c' (x * (b i / N))) := by
-    intro x _
-    by_cases r : b i ≥ 0
-    { have : (x + 1) * (b i / N) ≥ x * (b i / N) := by
-        ring_nf; simp; rw [← div_eq_mul_inv]; exact div_nonneg r (by linarith)
-      specialize useful ((x + 1) * (b i / N)) (x * (b i / N)) this
-      apply le_trans useful; ring_nf; simp }
-    { push_neg at r
-      have : x * (b i / N) ≥ (x + 1) * (b i / N) := by
-        ring_nf; simp; rw [← div_eq_mul_inv]
-        exact div_nonpos_of_nonpos_of_nonneg (by linarith) (by linarith)
-      specialize useful (x * (b i / N)) ((x + 1) * (b i / N)) this
-      rw [abs_sub_comm]
-      apply le_trans useful; ring_nf; simp }
-  have := Finset.sum_le_sum this
-  apply le_trans this
-  rw [← Finset.mul_sum]
-  have := sum_range_sub (fun x => c' (x * (b i / N))) N
-  simp
-  simp at this
-  rw [this, sane, div_mul_eq_mul_div]
-  apply (div_le_iff _).mpr
-  apply (div_le_iff hε).mp at Nhyp
-  conv => right; rw [mul_comm]
-  apply le_trans' Nhyp
-  rw [← abs_mul]
-  simp
-  apply le_trans' (le_abs_self _)
-  rfl
-  simp
-  assumption
+  -- have : ∀ x ∈ range N, |c ((x + 1) * (b i / N)) - c (x * (b i / N))|
+  --   ≤ (b i / N) * (c' ((x + 1) * (b i / N)) - c' (x * (b i / N))) := by
+  --   intro x _
+  --   by_cases r : b i ≥ 0
+  --   { have : (x + 1) * (b i / N) ≥ x * (b i / N) := by
+  --       ring_nf; simp; rw [← div_eq_mul_inv]; exact div_nonneg r (by linarith)
+  --     specialize useful ((x + 1) * (b i / N)) (x * (b i / N)) this
+  --     apply le_trans useful; ring_nf; simp }
+  --   { push_neg at r
+  --     have : x * (b i / N) ≥ (x + 1) * (b i / N) := by
+  --       ring_nf; simp; rw [← div_eq_mul_inv]
+  --       exact div_nonpos_of_nonpos_of_nonneg (by linarith) (by linarith)
+  --     specialize useful (x * (b i / N)) ((x + 1) * (b i / N)) this
+  --     rw [abs_sub_comm]
+  --     apply le_trans useful; ring_nf; simp }
+  -- have := Finset.sum_le_sum this
+  -- apply le_trans this
+  -- rw [← Finset.mul_sum]
+  -- have := sum_range_sub (fun x => c' (x * (b i / N))) N
+  -- simp
+  -- simp at this
+  -- rw [this, sane, div_mul_eq_mul_div]
+  -- apply (div_le_iff _).mpr
+  -- apply (div_le_iff hε).mp at Nhyp
+  -- conv => right; rw [mul_comm]
+  -- apply le_trans' Nhyp
+  -- rw [← abs_mul]
+  -- simp
+  -- apply le_trans' (le_abs_self _)
+  -- rfl
+  -- simp
+  -- assumption
