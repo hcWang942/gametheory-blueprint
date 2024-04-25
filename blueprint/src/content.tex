@@ -13,6 +13,48 @@
 
 \tableofcontents
 \section{Introduction}
+\section{Introduction}
+
+This section formalizes core concepts and results in auction theory using the Lean theorem prover. Our approach focuses on establishing a rigorous framework that captures the dynamics and strategic behaviors in auctions.
+
+\subsection{Main Definitions}
+
+\begin{itemize}
+    \item \textbf{Auction}: Defines an auction setup including bidders and their respective valuations.
+    \item \textbf{maxb}: A function to compute the highest bid within a given set of bids.
+    \item \textbf{winner}: Identifies the auction winner as the bidder with the highest bid.
+    \item \textbf{utility}: Calculates the utility for each bidder, taking into account their bid and the auction outcome.
+    \item \textbf{dominant}: Determines whether a bidding strategy is dominant for a bidder.
+\end{itemize}
+
+\subsection{Main Results}
+
+\begin{itemize}
+    \item \textbf{exists\_max}: Proves the existence of a participant whose bid is equal to the highest bid.
+    \item \textbf{winner\_take\_max}: Ensures that the bid of the winner is the highest among all bidders.
+    \item \textbf{b\_winner}: Asserts that the winner's bid surpasses or matches the second highest bid.
+    \item \textbf{valuation\_is\_dominant}: Demonstrates that bidding one's own valuation is a dominant strategy.
+\end{itemize}
+
+\subsection{Notations}
+
+\begin{itemize}
+    \item \( |b| \): Denotes a bidding function.
+    \item \( \text{maxb}(b) \): Represents the highest bid in the function \( b \).
+    \item \( B_i \): Stands for the maximal bid of all participants except participant \( i \).
+\end{itemize}
+
+\subsection{Implementation Notes}
+
+The defined structures and functions are crafted to accommodate multiple bidders, enhancing the realism and applicability of auction models. Key definitions such as \textit{winner} and \textit{maxb} leverage Lean's \textit{Finset} and \textit{Classical} logic modules to effectively manage non-constructive scenarios.
+
+\subsection{References}
+
+Our theoretical groundwork is supported by classical texts and research papers in auction theory, adapting their general proofs to the structured environment of Lean.
+
+\subsection{Tags}
+
+Keywords relevant to this work include \textit{auction}, \textit{game theory}, \textit{economics}, \textit{bidding}, and \textit{valuation}.
 
 
 
@@ -33,19 +75,19 @@ Here you can use LaTex. \cite{marcus}. You must cite something to make it work.
     \leanok
     \lean{Auction}
     \uses{two_different_elements}
-    Here is a definition.
+    This is the structure definition of the formalized auction theory project.
 \end{definition}
 
 \begin{definition}\label{maxb}
     \leanok
     \lean{maxb}
-    Here is a definition.
+    maxb is set to compute the highest bid given a bidding function `b`.
 \end{definition}
 
 \begin{lemma}\label{exists_max}
     \leanok
     \lean{exists_max}
-    Here is a definition.
+    There exists a participant `i` whose bid equals the highest bid.
 \end{lemma}
 \begin{proof}
     Here is a proof.
@@ -56,7 +98,7 @@ Here you can use LaTex. \cite{marcus}. You must cite something to make it work.
     \leanok
     \lean{winner}
     \uses{exists_max }
-    Here is a definition.
+    winner: The participant with the highest bid.
 \end{definition}
 
 \begin{lemma}\label{winner_take_max}
@@ -66,13 +108,13 @@ Here you can use LaTex. \cite{marcus}. You must cite something to make it work.
     Here is a definition.
 \end{lemma}
 \begin{proof}
-    Here is a proof.
+    The bid of the winner equals the highest bid.
 \end{proof}
 
 \begin{lemma}\label{delete_i_nonempty}
     \leanok
     \lean{delete_i_nonempty}
-    Here is a definition.
+    Removing a participant `i` from all participants still leaves a non-empty set.
 \end{lemma}
 \begin{proof}
     Here is a proof.
@@ -82,28 +124,28 @@ Here you can use LaTex. \cite{marcus}. You must cite something to make it work.
     \leanok
     \lean{B}
     \uses{delete_i_nonempty}
-    Here is a definition.
+    State that `B i` is the maximal bid of all participants but `i`.
 \end{definition}
 
 \begin{definition}\label{secondprice}
     \leanok
     \lean{secondprice}
     \uses{winner, B}
-    Here is a definition.
+    The secondprice refers to the second highest bid, i.e. the highest bid excluding the winner’s bid.
 \end{definition}
 
 \begin{definition}\label{utility}
     \leanok
     \lean{utility}
     \uses{winner, secondprice}
-    Here is a definition.
+    Defines the utility of participant `i`, which is their valuation minus the second highest bid if `i` is the winner, otherwise, it's 0.
 \end{definition}
 
 \begin{lemma}\label{utility_winner}
     \leanok
     \lean{utility_winner}
     \uses{utility, secondprice}
-    Here is a definition.
+    If `i` is the winner, then their utility is their valuation minus the second highest bid.
 \end{lemma}
 \begin{proof}
     Here is a proof.
@@ -113,7 +155,7 @@ Here you can use LaTex. \cite{marcus}. You must cite something to make it work.
     \leanok
     \lean{utility_loser}
     \uses{utility, winner}
-    Here is a definition.
+    If `i` is not the winner, then their utility is 0.
 \end{lemma}
 \begin{proof}
     Here is a proof.
@@ -123,7 +165,7 @@ Here you can use LaTex. \cite{marcus}. You must cite something to make it work.
     \leanok
     \lean{dominant}
     \uses{utility}
-    Here is a definition.
+    A strategy is dominant if bidding `bi` ensures that bidder `i`'s utility is maximized relative to any other bids `b'` where `b i = bi`.
 \end{definition}
 
 
@@ -134,7 +176,7 @@ Here you can use LaTex. \cite{marcus}. You must cite something to make it work.
     Here is a definition.
 \end{lemma}
 \begin{proof}
-    Here is a proof.
+    If `i`'s bid is higher than all other bids, then `i` is the winner.
 \end{proof}
 
 
@@ -143,7 +185,7 @@ Here you can use LaTex. \cite{marcus}. You must cite something to make it work.
     \leanok
     \lean{b_winner_max}
     \uses{winner, maxb, winner_take_max}
-    Here is a definition.
+    The bid of the winner is always greater than or equal to the bids of all other participants.
 \end{lemma}
 \begin{proof}
     Here is a proof.
@@ -153,7 +195,7 @@ Here you can use LaTex. \cite{marcus}. You must cite something to make it work.
     \leanok
     \lean{b_winner}
     \uses{winner, secondprice ,winner_take_max,  delete_i_nonempty}
-    Here is a definition.
+    The bid of the winner is always greater than or equal to the second highest bid.
 \end{lemma}
 \begin{proof}
     Here is a proof.
@@ -163,7 +205,7 @@ Here you can use LaTex. \cite{marcus}. You must cite something to make it work.
     \leanok
     \lean{b_loser_max}
     \uses{winner, maxb ,winner_take_max}
-    Here is a definition.
+    If `i` is not the winner, then the highest bid excluding `i` is equal to the overall highest bid.
 \end{lemma}
 \begin{proof}
     Here is a proof.
@@ -176,7 +218,7 @@ Here you can use LaTex. \cite{marcus}. You must cite something to make it work.
     Here is a definition.
 \end{lemma}
 \begin{proof}
-    Here is a proof.
+    Utility is non-negative if the bid equals the valuation.
 \end{proof}
 
 \begin{lemma}\label{valuation_is_dominant}
@@ -184,7 +226,7 @@ Here you can use LaTex. \cite{marcus}. You must cite something to make it work.
     \lean{valuation_is_dominant}
     \uses{dominant, winner, gt_wins, utility_winner, secondprice , 
           delete_i_nonempty, utility_nneg}
-    Here is a definition.
+          Proves that the strategy of bidding one's valuation is a dominant strategy for `i`.
 \end{lemma}
 \begin{proof}
     Here is a proof.
@@ -194,14 +236,14 @@ Here you can use LaTex. \cite{marcus}. You must cite something to make it work.
     \leanok
     \lean{Utility.FirstPrice}
     \uses{winner}
-    Here is a definition.
+    Computes the utility for a first price auction where the winner pays their bid.
 \end{definition}
 
 \begin{lemma}\label{utility_first_price_winner}
     \leanok
     \lean{utility_first_price_winner}
     \uses{winner, Utility.FirstPrice}
-    Here is a definition.
+    If `i` is the winner in a first price auction, their utility is their valuation minus their bid.
 \end{lemma}
 \begin{proof}
     Here is a proof.
@@ -211,7 +253,7 @@ Here you can use LaTex. \cite{marcus}. You must cite something to make it work.
     \leanok
     \lean{utility_first_price_winner}
     \uses{winner, Utility.FirstPrice}
-    Here is a definition.
+    If `i` is not the winner in a first price auction, their utility is 0.
 \end{lemma}
 \begin{proof}
     Here is a proof.
@@ -221,14 +263,14 @@ Here you can use LaTex. \cite{marcus}. You must cite something to make it work.
     \leanok
     \lean{Dominant.FirstPrice}
     \uses{Utility.FirstPrice}
-    Here is a definition.
+    Defines a dominant strategy in the context of a first price auction.
 \end{definition}
 
 \begin{theorem}\label{first_price_has_no_dominant_strategy}
     \leanok
     \lean{first_price_has_no_dominant_strategy}
     \uses{Dominant.FirstPrice, winner, gt_wins}
-    Here is a definition.
+    There is no dominant strategy in a first price auction for any `i` and any bid `bi`.
 \end{theorem}
 \begin{proof}
     Here is a proof.
