@@ -311,6 +311,7 @@ theorem magic_payment_rule_unique (ar : (E.I → ℝ) → E.feasibleSet)
   -- Set d = p - q.
   set d := p - q
   sorry
+  
   -- It suffices to show that d b i ≤ ε for all ε ≥ 0.
   -- suffices : ∀ ε > 0, |d b i| ≤ ε
   -- { exact eq_of_forall_dist_le this }
