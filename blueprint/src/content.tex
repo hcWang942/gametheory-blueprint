@@ -139,12 +139,14 @@ Here you can use LaTex. \cite{marcus}. You must cite something to make it work.
 \begin{definition}\label{maxBid}
     \leanok
     \lean{maxBid}
+    \uses{Auction}
     maxBid is set to compute the highest bid given a bidding function `b`.
 \end{definition}
 
 \begin{lemma}\label{exists_maxBid}
     \leanok
     \lean{exists_maxBid}
+    \uses{Auction}
     There exists a participant `i` whose bid equals the highest bid.
 \end{lemma}
 \begin{proof}
@@ -236,14 +238,14 @@ Here you can use LaTex. \cite{marcus}. You must cite something to make it work.
 \begin{definition}\label{Finset.univ_nontrivial_iff}
      \leanok
      \lean{Finset.univ_nontrivial_iff}
-      \uses{}
+     \uses{Auction}
      Here is a definition.
  \end{definition}
 
  \begin{definition}\label{Finset.univ_nontrivial}
      \leanok
      \lean{Finset.univ_nontrivial}
-      \uses{}
+     \uses{Finset.univ_nontrivial_iff}
      Here is a definition.
  \end{definition}
 
