@@ -233,10 +233,25 @@ Here you can use LaTex. \cite{marcus}. You must cite something to make it work.
     Here is a proof.
 \end{proof}
 
+\begin{definition}\label{Finset.univ_nontrivial_iff}
+     \leanok
+     \lean{Finset.univ_nontrivial_iff}
+      \uses{}
+     Here is a definition.
+ \end{definition}
+
+ \begin{definition}\label{Finset.univ_nontrivial}
+     \leanok
+     \lean{Finset.univ_nontrivial}
+      \uses{}
+     Here is a definition.
+ \end{definition}
+
+
 \begin{definition}\label{maxBidExcluding}
     \leanok
     \lean{maxBidExcluding}
-    \uses{}
+    \uses{Finset.univ_nontrivial}
     State that `maxBidExcluding i` is the maximal bid of all participants but `i`.
 \end{definition}
 
@@ -244,6 +259,13 @@ Here you can use LaTex. \cite{marcus}. You must cite something to make it work.
     \leanok
     \lean{secondPrice}
     \uses{winner, maxBidExcluding}
+    The secondPrice refers to the second highest bid, i.e. the highest bid excluding the winner’s bid.
+\end{definition}
+
+\begin{definition}\label{winnerbid_ge_second}
+    \leanok
+    \lean{winnerbid_ge_second}
+    \uses{bid_winner_eq_maxBid, winner, Secondprice, Finset.univ_nontrivial}
     The secondPrice refers to the second highest bid, i.e. the highest bid excluding the winner’s bid.
 \end{definition}
 
