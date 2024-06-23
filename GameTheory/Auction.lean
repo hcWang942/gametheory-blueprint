@@ -6,7 +6,7 @@ Authors: Ma Jiajun, Wang Haocheng
 import Mathlib.Data.Fintype.Basic
 import Mathlib.Data.Finset.Lattice
 import Mathlib.Data.Real.Basic
-    
+
 /-!
 # Auction Theory
 
@@ -137,6 +137,14 @@ theorem firstprice_auction_has_no_dominant_strategy (i : a.I) (bi : ℝ) :
   <;> intros <;> simp [*]
 
 end Firstprice
+
+lemma Finset.univ_nontrivial_iff {α : Type*} [Fintype α] :
+    (Finset.univ : Finset α).Nontrivial ↔ Nontrivial α := by
+  rw [Finset.Nontrivial, Finset.coe_univ, Set.nontrivial_univ_iff]
+
+lemma Finset.univ_nontrivial {α : Type*} [Fintype α] [h : Nontrivial α] :
+    (Finset.univ : Finset α).Nontrivial :=
+  Finset.univ_nontrivial_iff.mpr h
 
 /-- `maxBidExcluding i` is the maximal bid of all participants but `i`. -/
 noncomputable def maxBidExcluding (i : a.I) : ℝ := Finset.sup' (Finset.erase Finset.univ i)

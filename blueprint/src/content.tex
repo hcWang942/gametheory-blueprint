@@ -13,6 +13,75 @@
 
 \tableofcontents
 \section{Introduction}
+Mathematics is typically presented in natural language, results are stated this way, and proofs are given this way. Mathematicians use special symbols to denote mathematical objects and operations, but the reasoning is presented in natural langauge. Logicians have defined formal languages for writing statements and representing reasoning. The process of formalization of mathematics is the process of using a computer to reason about mathematics.
+
+These formal languages specify the rules of reasoning. Given these formal languages and the prescribed rules of reasoning, an reasoning is correct if it is licensed by the prescribed rules of reasoning at each step, and the correctness of the reasoning can be checked by checking whether it is allowed by the prescribed rules of reasoning at each step. Because the rules are mechanical, the process of checking for correctness is also mechanical. This ensures that the correctness of a formal proof is objective and algorithmically checkable.
+%https://www.contrib.andrew.cmu.edu/~avigad/Students/zipperer_ms_thesis.pdf
+This process can be divided into two main parts: expressing the statements of theorems in a formal language, and writing proofs using a fixed set of formal reasoning rules that can be checked algorithmically.
+
+% https://webusers.imj-prg.fr/~riccardo.brasca/event/luxembourg-2021/pres.pdf
+%https://www.andrew.cmu.edu/user/avigad/Teaching/practical/slides_upitt.pdf
+This project finish the formalization process of several theorems in Auction Theory using the proof assistant Lean4 and its mathematical library, Mathlib4. Lean4 is a software tool to assist with the development of formal proofs. Mathlib4 is a user maintained library for the Lean Theorem Prover. It contains both programming infrastructure and mathematics, as well as tactics that might be used to complete the formalization.
+
+The further goal is to refine the formally state theorems and contribute to the repository of Mathlib4 by creating a pull request. This bridges the gap between informal and formal mathematical reasoning and demonstrate the capabilities of modern proof assistants in handling complex mathematical concepts.
+
+\section{Main result}
+Auction Theory is a branch of economics that deals with the design and analysis of auction mechanisms. We will focus on formalizing key results from Auction Theory, including first-price and second-price auctions and Myerson's Lemma. 
+
+Main result of formalization incluing one lemma in first-price auction, in which state that there is no dominant strategy in first-price auction. 
+
+\begin{lemma}[First-Price Auction has no dominant strategy]
+In a sealed-bid first-price auction, no bidder has a dominant strategy.
+\end{lemma}
+
+And two lemmas in second-price auction.
+
+\begin{lemma}[Incentives in Second-Price Auctions]
+In a second-price auction, every bidder i has a dominant strategy: set the bid bi equal to her private valuation \(v_i\).
+\end{lemma}
+
+\begin{lemma}[Nonnegative Utility] In a second-price auction, every truthful bidder is guaranteed nonnegative utility.
+\end{lemma}
+
+By using Lean4 and Mathlib4, we 
+
+
+The formalization process involves translating natural language descriptions of auction mechanisms and their properties into formal statements and proofs. This involves defining the auction structures, bidding strategies, and utility functions formally, and proving fundamental results about these structures using Lean4. 
+
+This project is a step towards the goal of computer verification of current research in very abstract mathematics.Showing that formal methods are capable of verifying complex mathematical research.
+
+%!TEX root = Thesis.tex
+\chapter{Lean and Mathlib}
+
+The Lean Theorem Prover and Programming Language is developed principally by Leonardo de Moura when he was at Microsoft Research in 2013. Lean is a software tool to assist with the development of formal proofs by human-machine collaboration. Lean 4 is the latest version.
+
+Mathlib is a user maintained library for the Lean Theorem Prover. It contains both programming infrastructure and mathematics, as well as tactics that use the former and allow to develop the latter.
+
+
+\subsection{The Lean Theorem Prover and Programming Language}
+\subsubsection{What is a Proof Assistant}
+A proof assistant is a piece of software that provides a language for defining objects, specifying properties of these objects, and proving that these specifications hold. In a more general word, proof assistant translate state written by human being to the state that totally precise. A proof assistant has two components. First is the kernel, which checks that the proof is formally correct. The other is the elaborator. It translates a proof written by a human to something the kernel can check.
+% https://webusers.imj-prg.fr/~riccardo.brasca/event/luxembourg-2021/pres.pdf
+
+The system checks that these proofs are correct down to their logical foundation. This combination of human creativity with machine precision improves the reliability of proofs and supports complex mathematical reasoning. In a formalization, all definitions are precisely specified and all proofs are guaranteed to be correct. For instance, Coq, Isabelle/HOL (Higher-order logic) and Lean.
+\subsection{The Lean Theorem Prover and Programming Language}
+The Lean is first developed in 2013 by Leonardo de Moura at Microsoft Research. The Lean 4 was released at the beginning of 2021, marking a significant evolution from  Lean 3. The primary distinction is that Lean 4 is designed as a general-purpose programming language, not solely as an interactive theorem prover.It is capable of generating executables that are impressively fast. Additionally, Lean 4 supports calling into C++ and employs reference counting techniques that enable functionally written code to be compiled such that it updates in-place when appropriate.
+
+
+Lean uses a system of dependent types based on
+the calculus of inductive constructions (CIC)%[52]
+, and is is particularly known for its use of dependent type theory, which allows types to depend on values. Lean checks that every expression has a type. Types are treated as first-class citizens in Lean. %https://lean-lang.org/functional_programming_in_lean/getting-to-know/summary.html
+This means that just like values, types can be passed as arguments, returned from functions, and manipulated within the language. This feature is significant for modeling complex mathematical and computational concepts directly in the type system. Brand new types can be introduced to Lean using the 'structure' or 'inductive' features. These new types are not considered to be equivalent to any other type, even if their definitions are otherwise identical. This also enhance the flexibility and creativity of Lean.
+
+
+
+
+\subsubsection{Mathlib: The Lean Mathematical Library}
+%Foundation and Purpose
+Mathlib is a user maintained library for the Lean theorem prover. An easy way to understand is that mathlib is a repository of mathematical formalized proofs.  Essentially, it functions as a comprehensive repository of formally formalized mathematical theorems, where the theorems can be imported into respective projects, thereby facilitating the proof development and formalization.
+
+Mathlib was first established in 2017 by a group of users with very diverse backgrounds, where the Lean 3 is the latest version. It contains both programming infrastructure and mathematics, as well as tactics that use the former and allow to develop the latter. The mathlib library is designed as a basis for research level mathematics. The development of Mathlib is characterized by its dynamic and active community. With regular contributions from a global array of participants, The library contains useful definitions for programming. This project is very active, with many regular contributors and daily activity. Currently, much of mathlib consists of undergraduate level mathematics. %https://leanprover-community.github.io/
+
 \section{Introduction}
 
 This section formalizes core concepts and results in auction theory using the Lean theorem prover. Our approach focuses on establishing a rigorous framework that captures the dynamics and strategic behaviors in auctions.
