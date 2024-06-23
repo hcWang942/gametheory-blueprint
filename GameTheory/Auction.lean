@@ -6,7 +6,7 @@ Authors: Ma Jiajun, Wang Haocheng
 import Mathlib.Data.Fintype.Basic
 import Mathlib.Data.Finset.Lattice
 import Mathlib.Data.Real.Basic
-
+    
 /-!
 # Auction Theory
 
