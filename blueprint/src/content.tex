@@ -12,7 +12,7 @@
 
 
 \tableofcontents
-\section{Introduction}
+\section{Abstract}
 Mathematics is typically presented in natural language, results are stated this way, and proofs are given this way. Mathematicians use special symbols to denote mathematical objects and operations, but the reasoning is presented in natural langauge. Logicians have defined formal languages for writing statements and representing reasoning. The process of formalization of mathematics is the process of using a computer to reason about mathematics.
 
 These formal languages specify the rules of reasoning. Given these formal languages and the prescribed rules of reasoning, an reasoning is correct if it is licensed by the prescribed rules of reasoning at each step, and the correctness of the reasoning can be checked by checking whether it is allowed by the prescribed rules of reasoning at each step. Because the rules are mechanical, the process of checking for correctness is also mechanical. This ensures that the correctness of a formal proof is objective and algorithmically checkable.
@@ -75,8 +75,8 @@ A proof assistant is a piece of software that provides a language for defining o
 % https://webusers.imj-prg.fr/~riccardo.brasca/event/luxembourg-2021/pres.pdf
 
 The system checks that these proofs are correct down to their logical foundation. This combination of human creativity with machine precision improves the reliability of proofs and supports complex mathematical reasoning. In a formalization, all definitions are precisely specified and all proofs are guaranteed to be correct. For instance, Coq, Isabelle/HOL (Higher-order logic) and Lean.
-\subsection{The Lean Theorem Prover and Programming Language}
-The Lean is first developed in 2013 by Leonardo de Moura at Microsoft Research. The Lean 4 was released at the beginning of 2021, marking a significant evolution from  Lean 3. The primary distinction is that Lean 4 is designed as a general-purpose programming language, not solely as an interactive theorem prover.It is capable of generating executables that are impressively fast. Additionally, Lean 4 supports calling into C++ and employs reference counting techniques that enable functionally written code to be compiled such that it updates in-place when appropriate.
+
+Lean is first developed in 2013 by Leonardo de Moura at Microsoft Research. The Lean 4 was released at the beginning of 2021, marking a significant evolution from  Lean 3. The primary distinction is that Lean 4 is designed as a general-purpose programming language, not solely as an interactive theorem prover.It is capable of generating executables that are impressively fast. Additionally, Lean 4 supports calling into C++ and employs reference counting techniques that enable functionally written code to be compiled such that it updates in-place when appropriate.
 
 
 Lean uses a system of dependent types based on
@@ -222,9 +222,7 @@ Here you can use LaTex. \cite{marcus}. You must cite something to make it work.
     \uses{winner, FirstPrice.utility}
     If `i` is the winner in a first price auction, their utility is their valuation minus their bid.
 \end{lemma}
-\begin{proof}
-    Here is a proof.
-\end{proof}
+
 
 \begin{lemma}\label{FirstPrice.utility_loser}
     \leanok
@@ -232,9 +230,7 @@ Here you can use LaTex. \cite{marcus}. You must cite something to make it work.
     \uses{FirstPrice.utility}
     If `i` is not the winner in a first price auction, their utility is 0.
 \end{lemma}
-\begin{proof}
-    Here is a proof.
-\end{proof}
+
 
 \begin{theorem}\label{FirstPrice.firstprice_auction_has_no_dominant_strategy}
     \leanok
@@ -243,7 +239,11 @@ Here you can use LaTex. \cite{marcus}. You must cite something to make it work.
     There is no dominant strategy in a first price auction for any `i` and any bid `bi`.
 \end{theorem}
 \begin{proof}
-    Here is a proof.
+Consider any arbitrary bidder \(i\) with valuation \(v_i\) and the bids \(b_i\) ,  \(b_{j}\) be bid of the other bidders. Define \(B = \max_{j \neq i} b_j\) as the highest bid by any other bidder. \(\epsilon\) be the least increment value in the auction. For bidder \(i\) to have a dominant strategy, \(b_i\) must maximize \(\text{Utility}(b_i)\) for all possible \(b_{j}\).
+
+However, if \(b_i > B\) lead to winning with a positive utility, Utility\((b_i)\) =  \(v_i - b_i\), which is maximized precisely when \(b_i\) approaches \(B\) from above. 
+
+Since there always exist a \(b_i' = B - \epsilon\) could lead to a higher utility when \(v_i \ge B\). Utility\((b_i')\) = \(v_i - B + \epsilon\) which is greater than Utility\((b_i)\) =  \(v_i - b_i\) if \(b_i = v_i\).  Thus, there is no single \(b_i\) that always lead to the highest utility, proving that no dominant strategy exists.
 \end{proof}
 
 \begin{definition}\label{Finset.univ_nontrivial_iff}
@@ -334,10 +334,10 @@ Here you can use LaTex. \cite{marcus}. You must cite something to make it work.
     \leanok
     \lean{Secondprice.utility_nneg}
     \uses{Secondprice.utility, maxBidExcluding_le_maxBid, winner, secondPrice ,bid_winner_eq_maxBid}
-    Here is a definition.
+    Utility is non-negative if the bid equals the valuation.
 \end{lemma}
 \begin{proof}
-    Utility is non-negative if the bid equals the valuation.
+Losers receive utility 0. If a bidder \(i\) is the winner, then her utility is \(v_i - p\), where \(p\) is the second-highest bid. Since \(i\) is the winner (and hence the highest bidder) and bid her true valuation, \(p \leq v_i\), and hence \(v_i - p \geq 0\). 
 \end{proof}
 
 \begin{lemma}\label{Secondprice.valuation_is_dominant}
@@ -345,10 +345,15 @@ Here you can use LaTex. \cite{marcus}. You must cite something to make it work.
     \lean{Secondprice.valuation_is_dominant}
     \uses{dominant, Secondprice.utility, maxBidExcluding, Secondprice.utility_winner, secondPrice, 
           Secondprice.utility_loser, maxBidExcluding_eq_maxBid_if_loser, Secondprice.utility_nneg}
-          Proves that the strategy of bidding one's valuation is a dominant strategy for `i`.
+
+          In a second-price auction, every bidder i has a dominant strategy: set the bid bi equal to her private valuation \(v_i\).
 \end{lemma}
 \begin{proof}
-    Here is a proof.
+Fix an arbitrary bidder \(i\), valuation \(v_i\), and the bids \(b_{-i}\) of the other bidders. Here \(b_{-i}\) means the vector of all bids, but with the \(i\)th component removed. We need to show that bidder \(i\)'s utility is maximized by setting \(b_i = v_i\).
+
+Let \(B = \max_{j \neq i} b_j\) denote the highest bid by some other bidder. What's special about a second-price auction is that, even though there are an infinite number of bids that \(i\) could make, only two distinct outcomes can result. If \(b_i < B\), then \(i\) loses and receives utility 0. If \(b_i \geq B\), then \(i\) wins at price \(B\) and receives utility \(v_i - B\).
+    
+We conclude by considering two cases. First, if \(v_i < B\), the maximum utility that bidder \(i\) can obtain is \(\max\{0, v_i - B\} = 0\), and it achieves this by bidding truthfully (and losing). Second, if \(v_i \geq B\), the maximum utility that bidder \(i\) can obtain is \(\max\{0, v_i - B\} = v_i - B\), and it achieves this by bidding truthfully (and winning).
 \end{proof}
 
 
