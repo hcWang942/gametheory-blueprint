@@ -32,14 +32,18 @@ Auction Theory is a branch of economics that deals with the design and analysis 
 \subsection{First-Price and Second-Price Auction}
 
 \begin{lemma}[First-Price Auction has no dominant strategy]
+\lean{firstprice_auction_has_no_dominant_strategy}
 In a sealed-bid first-price auction, no bidder has a dominant strategy.
 \end{lemma}
 Lemma 1.1 state that there is no dominant strategy in first-price auction. This lemma highlights the complexity of strategy selection in first-price auctions and the need for rational decision-making in a competitive and uncertain environment. This understanding has significant theoretical and practical implications for auction designers and participants.
 
 \begin{lemma}[Incentives in Second-Price Auctions]
+\lean{valuation_is_dominant}
 In a second-price auction, every bidder i has a dominant strategy: set the bid bi equal to her private valuation \(v_i\).
 \end{lemma}
-\begin{lemma}[Nonnegative Utility] In a second-price auction, every truthful bidder is guaranteed nonnegative utility.
+\begin{lemma}[Nonnegative Utility] 
+\lean{utility_nneg}
+In a second-price auction, every truthful bidder is guaranteed nonnegative utility.
 \end{lemma}
 The Lemma 1.2 states Incentives in Second-Price Auctions, in which states bidding one's valuation is a dominant strategy in second-price auction. The Lemma 1.3 Nonnegative Utility states that the utility of bidder is non-negative if the bid equals the valuation in second-price auction. So in a second-price auction everyone will bid truthfully, so we will actually give the item to the player who values it the most. The combination of the two lemmas is exactly the definition of one mechanism is dominant strategy incentive compatible.
 
